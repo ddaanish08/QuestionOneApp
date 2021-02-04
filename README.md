@@ -23,5 +23,5 @@ It will return the list of employess
 4.  Delete API ->  /api/v1/employee/deleteEmployee
 Query Param: employeeId
 
-5.GET API ->  /api/v1/employee/findEmployee
+5. GET API ->  /api/v1/employee/findEmployee
 Query Param: employeeId
