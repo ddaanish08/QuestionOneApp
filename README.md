@@ -10,12 +10,10 @@ Run as Container:
 2. Build the image with command  docker build -t <IMAGE_NAME>:<VERSION> .
 3. docker run -p 1010:1010  <IMAGE_NAME>:<VERSION> 
 
-It Expose the below API 
-
+It Expose below API 
 1. POST API -> /api/v1/employee/upload 
 Query Param: action -> Its supports upload as action
 Body as formData key: files and values as txt file
-
 2. GET API ->  /api/v1/employee/status
 Query Param: taskUID : This can be fetched as response from API 1 
 
