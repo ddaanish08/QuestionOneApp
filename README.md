@@ -7,8 +7,8 @@ Run as JAR
 
 Run as Container:
 1. Run the command ./gradlew build to build the jar
-2. Build the image with command  docker build -t <IMAGE_NAME>:<VERSION> .
-3. docker run -p 1010:1010  <IMAGE_NAME>:<VERSION> 
+2. Build the image with command  docker build -t IMAGE_NAME:VERSION .
+3. docker run -p 1010:1010  IMAGE_NAME:VERSION 
 
 It Expose below API 
 1. POST API -> /api/v1/employee/upload 
