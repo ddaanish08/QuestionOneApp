@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,6 +70,24 @@ public class EmployeeController {
 	public CompletableFuture<ResponseEntity> getAllEmployees() {
 		return employeeService.getAllEmployees().<ResponseEntity>thenApply(ResponseEntity::ok)
 				.exceptionally(handleGetAllEmployeeFailure);
+	}
+
+	/**
+	 * Delete the given employee entry
+	 */
+	@DeleteMapping(path = "/deleteEmployee", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponse> deleteEmployee(@RequestParam(value = "employeeId") int employeeId) {
+		RestResponse restResponse = employeeService.deleteEmployee(employeeId);
+		return ResponseEntity.ok(restResponse);
+	}
+
+	/**
+	 * Fetch the given employee entry
+	 */
+	@GetMapping(path = "/findEmployee", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Employee> getEmployee(@RequestParam(value = "employeeId") int employeeId) {
+		Employee restResponse = employeeService.getEmployee(employeeId);
+		return ResponseEntity.ok(restResponse);
 	}
 
 	/**

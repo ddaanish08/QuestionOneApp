@@ -19,4 +19,8 @@ public interface EmployeeService {
 	CompletableFuture<List<Employee>> getAllEmployees();
 
 	TaskInfo createAndSaveTaskInfo(String action, String status);
+
+	RestResponse deleteEmployee(int employeeId);
+
+	Employee getEmployee(int employeeId);
 }

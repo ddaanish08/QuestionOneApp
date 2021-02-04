@@ -3,7 +3,9 @@ package com.question.one.constant;
 public enum Constant {
 
 	IN_PROGRESS("In Progress"),
-	COMPLETED("Completed");
+	COMPLETED("Completed"),
+	DELETE("Delete"),
+	FETCH("Fetch");
 
 	private final String state;
 

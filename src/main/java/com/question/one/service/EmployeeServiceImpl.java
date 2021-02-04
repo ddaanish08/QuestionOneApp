@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
@@ -54,6 +55,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 		log.info("Elapsed time: {}", (System.currentTimeMillis() - start));
 		taskInfo.setTimeTaken(System.currentTimeMillis() - start);
 		updateTaskInfo(taskInfo, Constant.COMPLETED.toString());
+	}
+
+	@Override
+	public RestResponse deleteEmployee(int employeeId) {
+		RestResponse restResponse = new RestResponse();
+		TaskInfo taskInfo = createAndSaveTaskInfo(Constant.DELETE.toString(), Constant.IN_PROGRESS.toString());
+		employeeRepository.deleteById(employeeId);
+		restResponse.setMessage("Delete has been Completed For EmployeeId: " + employeeId);
+		restResponse.setTaskInfoId(taskInfo.getTaskUID());
+		updateTaskInfo(taskInfo, Constant.COMPLETED.toString());
+		return restResponse;
+	}
+
+	@Override
+	public Employee getEmployee(int employeeId) {
+		RestResponse restResponse = new RestResponse();
+		TaskInfo taskInfo = createAndSaveTaskInfo(Constant.FETCH.toString(), Constant.IN_PROGRESS.toString());
+		Optional<Employee> employee =employeeRepository.findById(employeeId);
+		restResponse.setMessage("Fetch has been Completed : " + employeeId);
+		restResponse.setTaskInfoId(taskInfo.getTaskUID());
+		updateTaskInfo(taskInfo, Constant.COMPLETED.toString());
+		return employee.orElse(null);
 	}
 
 	public RestResponse getUploadStatus(String taskUID) {
